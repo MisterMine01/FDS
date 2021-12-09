@@ -1,23 +1,18 @@
-"""
-Folder Downloader Data
-"""
-
 import json
 import os
 from ..version import FDD_version
 
-
-def tree(rst):
-    folders = [[rst, os.path.basename(rst)]]
-    for fold in os.listdir(rst):
-        if os.path.isdir(os.path.join(rst, fold)):
-            for loaded in tree(os.path.join(rst, fold)):
-                folders.append(loaded)
-    return folders
+"""
+Folder Downloader Data
+Interact with the Data, who's dependency
+"""
 
 
 class Fdd:
+    dependency_data: str
+    """File path"""
     def __init__(self, dependency_data):
+        """Constructor"""
         if os.path.splitext(dependency_data)[1].lower() != ".fdd".lower():
             raise AttributeError("dependency_data is not fdd file")
         if not os.path.isfile(dependency_data):
@@ -30,8 +25,9 @@ class Fdd:
             self.dependency_data = os.path.join(os.getcwd(), dependency_data)
 
     def load_dependency_data(self):
+        """add dependency in pwd not existed yet and return all dependency"""
         dependency_js = json.load(open(self.dependency_data))
-        all_folder = tree(".")
+        all_folder = self.tree(".")
         for i in range(len(all_folder)):
             if all_folder[i][0] not in [folder["folder"] for folder in dependency_js["dependency"]]:
                 dependency_js["dependency"].append(
@@ -45,6 +41,7 @@ class Fdd:
         return dependency_js
 
     def dependency_compiler_from_main(self):
+        """return dependency needed in the pwd"""
         dependency_data = self.load_dependency_data()
         dependency_require = []
         for dependency in dependency_data["dependency"]:
@@ -59,3 +56,13 @@ class Fdd:
                     }
                 )"""
         return dependency_require
+
+    @staticmethod
+    def tree(rst):
+        """find all folder and sub-folder in a dir"""
+        folders = [[rst, os.path.basename(rst)]]
+        for fold in os.listdir(rst):
+            if os.path.isdir(os.path.join(rst, fold)):
+                for loaded in Fdd.tree(os.path.join(rst, fold)):
+                    folders.append(loaded)
+        return folders

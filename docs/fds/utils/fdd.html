@@ -31,19 +31,22 @@
                     <h2>API Documentation</h2>
                         <ul class="memberlist">
             <li>
-                    <a class="function" href="#tree">tree</a>
-            </li>
-            <li>
                     <a class="class" href="#Fdd">Fdd</a>
                             <ul class="memberlist">
                         <li>
                                 <a class="function" href="#Fdd.__init__">Fdd</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Fdd.dependency_data">dependency_data</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Fdd.load_dependency_data">load_dependency_data</a>
                         </li>
                         <li>
                                 <a class="function" href="#Fdd.dependency_compiler_from_main">dependency_compiler_from_main</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Fdd.tree">tree</a>
                         </li>
                 </ul>
 
@@ -64,31 +67,24 @@
                     <h1 class="modulename">
 <a href="./../../fds.html">fds</a><wbr>.<a href="./../utils.html">utils</a><wbr>.fdd    </h1>
 
-                        <div class="docstring"><p>Folder Downloader Data</p>
-</div>
-
+                
                         <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Folder Downloader Data</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">json</span>
+            <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">..version</span> <span class="kn">import</span> <span class="n">FDD_version</span>
 
-
-<span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
-    <span class="n">folders</span> <span class="o">=</span> <span class="p">[[</span><span class="n">rst</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rst</span><span class="p">)]]</span>
-    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
-            <span class="k">for</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
-                <span class="n">folders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">folders</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Folder Downloader Data</span>
+<span class="sd">Interact with the Data, who&#39;s dependency</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Fdd</span><span class="p">:</span>
+    <span class="n">dependency_data</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;File path&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependency_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;.fdd&quot;</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;dependency_data is not fdd file&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
@@ -101,8 +97,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">dependency_data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">load_dependency_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;add dependency in pwd not existed yet and return all dependency&quot;&quot;&quot;</span>
         <span class="n">dependency_js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span><span class="p">))</span>
-        <span class="n">all_folder</span> <span class="o">=</span> <span class="n">tree</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="n">all_folder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_folder</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">all_folder</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">folder</span><span class="p">[</span><span class="s2">&quot;folder&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">dependency_js</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]]:</span>
                 <span class="n">dependency_js</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -116,6 +113,7 @@
         <span class="k">return</span> <span class="n">dependency_js</span>
 
     <span class="k">def</span> <span class="nf">dependency_compiler_from_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return dependency needed in the pwd&quot;&quot;&quot;</span>
         <span class="n">dependency_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_dependency_data</span><span class="p">()</span>
         <span class="n">dependency_require</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">dependency</span> <span class="ow">in</span> <span class="n">dependency_data</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]:</span>
@@ -130,35 +128,21 @@
 <span class="sd">                    }</span>
 <span class="sd">                )&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">dependency_require</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;find all folder and sub-folder in a dir&quot;&quot;&quot;</span>
+        <span class="n">folders</span> <span class="o">=</span> <span class="p">[[</span><span class="n">rst</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rst</span><span class="p">)]]</span>
+        <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">Fdd</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
+                    <span class="n">folders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">folders</span>
 </pre></div>
 
         </details>
 
             </section>
-                <section id="tree">
-                            <div class="attr function"><a class="headerlink" href="#tree">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">def</span>
-            <span class="name">tree</span><span class="signature">(rst)</span>:
-    </div>
-
-                <details>
-            <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
-    <span class="n">folders</span> <span class="o">=</span> <span class="p">[[</span><span class="n">rst</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rst</span><span class="p">)]]</span>
-    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
-            <span class="k">for</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
-                <span class="n">folders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">folders</span>
-</pre></div>
-
-        </details>
-
-    
-
-                </section>
                 <section id="Fdd">
                                 <div class="attr class">
         <a class="headerlink" href="#Fdd">#&nbsp;&nbsp</a>
@@ -171,7 +155,10 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Fdd</span><span class="p">:</span>
+    <span class="n">dependency_data</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;File path&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependency_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;.fdd&quot;</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;dependency_data is not fdd file&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
@@ -184,8 +171,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">dependency_data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">load_dependency_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;add dependency in pwd not existed yet and return all dependency&quot;&quot;&quot;</span>
         <span class="n">dependency_js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span><span class="p">))</span>
-        <span class="n">all_folder</span> <span class="o">=</span> <span class="n">tree</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="n">all_folder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_folder</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">all_folder</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">folder</span><span class="p">[</span><span class="s2">&quot;folder&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">dependency_js</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]]:</span>
                 <span class="n">dependency_js</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -199,6 +187,7 @@
         <span class="k">return</span> <span class="n">dependency_js</span>
 
     <span class="k">def</span> <span class="nf">dependency_compiler_from_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return dependency needed in the pwd&quot;&quot;&quot;</span>
         <span class="n">dependency_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_dependency_data</span><span class="p">()</span>
         <span class="n">dependency_require</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">dependency</span> <span class="ow">in</span> <span class="n">dependency_data</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]:</span>
@@ -213,6 +202,16 @@
 <span class="sd">                    }</span>
 <span class="sd">                )&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">dependency_require</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;find all folder and sub-folder in a dir&quot;&quot;&quot;</span>
+        <span class="n">folders</span> <span class="o">=</span> <span class="p">[[</span><span class="n">rst</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rst</span><span class="p">)]]</span>
+        <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">Fdd</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
+                    <span class="n">folders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">folders</span>
 </pre></div>
 
         </details>
@@ -229,6 +228,7 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependency_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;.fdd&quot;</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;dependency_data is not fdd file&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
@@ -243,7 +243,20 @@
 
         </details>
 
-    
+            <div class="docstring"><p>Constructor</p>
+</div>
+
+
+                            </div>
+                            <div id="Fdd.dependency_data" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Fdd.dependency_data">#&nbsp;&nbsp</a>
+
+        <span class="name">dependency_data</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>File path</p>
+</div>
+
 
                             </div>
                             <div id="Fdd.load_dependency_data" class="classattr">
@@ -257,8 +270,9 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">load_dependency_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;add dependency in pwd not existed yet and return all dependency&quot;&quot;&quot;</span>
         <span class="n">dependency_js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span><span class="p">))</span>
-        <span class="n">all_folder</span> <span class="o">=</span> <span class="n">tree</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="n">all_folder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_folder</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">all_folder</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">folder</span><span class="p">[</span><span class="s2">&quot;folder&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">dependency_js</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]]:</span>
                 <span class="n">dependency_js</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -274,7 +288,9 @@
 
         </details>
 
-    
+            <div class="docstring"><p>add dependency in pwd not existed yet and return all dependency</p>
+</div>
+
 
                             </div>
                             <div id="Fdd.dependency_compiler_from_main" class="classattr">
@@ -288,6 +304,7 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">dependency_compiler_from_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;return dependency needed in the pwd&quot;&quot;&quot;</span>
         <span class="n">dependency_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_dependency_data</span><span class="p">()</span>
         <span class="n">dependency_require</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">dependency</span> <span class="ow">in</span> <span class="n">dependency_data</span><span class="p">[</span><span class="s2">&quot;dependency&quot;</span><span class="p">]:</span>
@@ -306,7 +323,38 @@
 
         </details>
 
-    
+            <div class="docstring"><p>return dependency needed in the pwd</p>
+</div>
+
+
+                            </div>
+                            <div id="Fdd.tree" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#Fdd.tree">#&nbsp;&nbsp</a>
+
+                <div class="decorator">@staticmethod</div>
+
+            <span class="def">def</span>
+            <span class="name">tree</span><span class="signature">(rst)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;find all folder and sub-folder in a dir&quot;&quot;&quot;</span>
+        <span class="n">folders</span> <span class="o">=</span> <span class="p">[[</span><span class="n">rst</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">rst</span><span class="p">)]]</span>
+        <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">Fdd</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">fold</span><span class="p">)):</span>
+                    <span class="n">folders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">folders</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>find all folder and sub-folder in a dir</p>
+</div>
+
 
                             </div>
                 </section>

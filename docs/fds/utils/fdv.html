@@ -37,6 +37,12 @@
                                 <a class="function" href="#Fdv.__init__">Fdv</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Fdv.fds_web_server">fds_web_server</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Fdv.version_folder">version_folder</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Fdv.get_all_version">get_all_version</a>
                         </li>
                         <li>
@@ -75,10 +81,22 @@
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">..server</span> <span class="kn">import</span> <span class="n">FDSServer</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Folder Downloader Version</span>
+<span class="sd">Interact with all version of the opened project</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Fdv</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_folder</span><span class="p">,</span> <span class="n">fds_web_server</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">fds_web_server</span><span class="p">:</span> <span class="n">FDSServer</span>
+    <span class="sd">&quot;&quot;&quot;FDS Server&quot;&quot;&quot;</span>
+    <span class="n">version_folder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;folder where json version was saved&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fds_web_server</span><span class="p">:</span> <span class="n">FDSServer</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="o">=</span> <span class="n">fds_web_server</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">version_folder</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;version_folder not exist: &quot;</span> <span class="o">+</span> <span class="n">version_folder</span><span class="p">)</span>
@@ -88,26 +106,31 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">version_folder</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_all_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all version from the server&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;fds_web_server not initialized&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span><span class="o">.</span><span class="n">get_all_version</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">get_all_downloaded_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all downloaded version from the folder&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">)]</span>
 
-    <span class="k">def</span> <span class="nf">download_fdv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">download_fdv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Download a version in the server and save it in the folder&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;fds_web_server not initialized&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">),</span>
                  <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span><span class="o">.</span><span class="n">get_version</span><span class="p">(</span><span class="n">version_name</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">get_fdv_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_fdv_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the dict of a downloaded version&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">)):</span>
             <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">write_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">version_data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">write_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write a version&quot;&quot;&quot;</span>
         <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">version_data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
         <span class="p">)</span>
@@ -128,7 +151,13 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Fdv</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_folder</span><span class="p">,</span> <span class="n">fds_web_server</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">fds_web_server</span><span class="p">:</span> <span class="n">FDSServer</span>
+    <span class="sd">&quot;&quot;&quot;FDS Server&quot;&quot;&quot;</span>
+    <span class="n">version_folder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;folder where json version was saved&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fds_web_server</span><span class="p">:</span> <span class="n">FDSServer</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="o">=</span> <span class="n">fds_web_server</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">version_folder</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;version_folder not exist: &quot;</span> <span class="o">+</span> <span class="n">version_folder</span><span class="p">)</span>
@@ -138,26 +167,31 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">version_folder</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_all_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all version from the server&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;fds_web_server not initialized&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span><span class="o">.</span><span class="n">get_all_version</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">get_all_downloaded_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all downloaded version from the folder&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">)]</span>
 
-    <span class="k">def</span> <span class="nf">download_fdv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">download_fdv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Download a version in the server and save it in the folder&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;fds_web_server not initialized&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">),</span>
                  <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span><span class="o">.</span><span class="n">get_version</span><span class="p">(</span><span class="n">version_name</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">get_fdv_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_fdv_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the dict of a downloaded version&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">)):</span>
             <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="nf">write_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">version_data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">write_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write a version&quot;&quot;&quot;</span>
         <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">version_data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
         <span class="p">)</span>
@@ -171,12 +205,13 @@
                                         <div class="attr function"><a class="headerlink" href="#Fdv.__init__">#&nbsp;&nbsp</a>
 
         
-            <span class="name">Fdv</span><span class="signature">(version_folder, fds_web_server=None)</span>
+            <span class="name">Fdv</span><span class="signature">(version_folder: str, fds_web_server: <a href="../server.html#FDSServer">fds.server.FDSServer</a> = None)</span>
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_folder</span><span class="p">,</span> <span class="n">fds_web_server</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fds_web_server</span><span class="p">:</span> <span class="n">FDSServer</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="o">=</span> <span class="n">fds_web_server</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">version_folder</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;version_folder not exist: &quot;</span> <span class="o">+</span> <span class="n">version_folder</span><span class="p">)</span>
@@ -188,7 +223,31 @@
 
         </details>
 
-    
+            <div class="docstring"><p>Constructor</p>
+</div>
+
+
+                            </div>
+                            <div id="Fdv.fds_web_server" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Fdv.fds_web_server">#&nbsp;&nbsp</a>
+
+        <span class="name">fds_web_server</span><span class="annotation">: <a href="../server.html#FDSServer">fds.server.FDSServer</a></span>
+    </div>
+
+            <div class="docstring"><p>FDS Server</p>
+</div>
+
+
+                            </div>
+                            <div id="Fdv.version_folder" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Fdv.version_folder">#&nbsp;&nbsp</a>
+
+        <span class="name">version_folder</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>folder where json version was saved</p>
+</div>
+
 
                             </div>
                             <div id="Fdv.get_all_version" class="classattr">
@@ -202,6 +261,7 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">get_all_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all version from the server&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;fds_web_server not initialized&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -210,7 +270,9 @@
 
         </details>
 
-    
+            <div class="docstring"><p>Get all version from the server</p>
+</div>
+
 
                             </div>
                             <div id="Fdv.get_all_downloaded_version" class="classattr">
@@ -224,12 +286,15 @@
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">get_all_downloaded_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get all downloaded version from the folder&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">)]</span>
 </pre></div>
 
         </details>
 
-    
+            <div class="docstring"><p>Get all downloaded version from the folder</p>
+</div>
+
 
                             </div>
                             <div id="Fdv.download_fdv" class="classattr">
@@ -237,12 +302,13 @@
 
         
             <span class="def">def</span>
-            <span class="name">download_fdv</span><span class="signature">(self, version_name)</span>:
+            <span class="name">download_fdv</span><span class="signature">(self, version_name: str)</span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">download_fdv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">):</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">download_fdv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Download a version in the server and save it in the folder&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fds_web_server</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;fds_web_server not initialized&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -252,7 +318,9 @@
 
         </details>
 
-    
+            <div class="docstring"><p>Download a version in the server and save it in the folder</p>
+</div>
+
 
                             </div>
                             <div id="Fdv.get_fdv_data" class="classattr">
@@ -260,19 +328,22 @@
 
         
             <span class="def">def</span>
-            <span class="name">get_fdv_data</span><span class="signature">(self, version_name)</span>:
+            <span class="name">get_fdv_data</span><span class="signature">(self, version_name: str)</span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">get_fdv_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">):</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">get_fdv_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the dict of a downloaded version&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">)):</span>
             <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">version_name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">)))</span>
 </pre></div>
 
         </details>
 
-    
+            <div class="docstring"><p>Get the dict of a downloaded version</p>
+</div>
+
 
                             </div>
                             <div id="Fdv.write_version" class="classattr">
@@ -280,12 +351,13 @@
 
         
             <span class="def">def</span>
-            <span class="name">write_version</span><span class="signature">(self, name, version_data)</span>:
+            <span class="name">write_version</span><span class="signature">(self, name: str, version_data: dict)</span>:
     </div>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">write_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">version_data</span><span class="p">):</span>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">write_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write a version&quot;&quot;&quot;</span>
         <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">version_folder</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.fdv&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">version_data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
         <span class="p">)</span>
@@ -293,7 +365,9 @@
 
         </details>
 
-    
+            <div class="docstring"><p>Write a version</p>
+</div>
+
 
                             </div>
                 </section>

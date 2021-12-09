@@ -1,3 +1,0 @@
-import fds
-
-fds.FDSClient()
