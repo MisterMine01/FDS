@@ -1,0 +1,29 @@
+{
+	"AllVersion": {
+		"GET": {
+			"version": "202"
+		},
+		"POST": [],
+		"PHP_function": "all_version"
+	},
+	"GetVersion": {
+		"GET": {
+			"version": "200"
+		},
+		"POST": [
+			"version"
+		],
+		"PHP_function": "get_version"
+	},
+	"DownloadFdf": {
+		"GET": {
+			"download": "200"
+		},
+		"POST": [
+			"id",
+			"name",
+			"version"
+		],
+		"PHP_function": "download_fdf"
+	}
+}
