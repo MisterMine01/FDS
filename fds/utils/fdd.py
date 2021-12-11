@@ -19,10 +19,11 @@ class Fdd:
             open(dependency_data, "w").write(json.dumps({"compiler_version": FDD_version,
                                                          "dependency": []},
                                                         indent=4))
-        if os.path.abspath(dependency_data):
+        if os.path.isabs(dependency_data):
             self.dependency_data = dependency_data
         else:
             self.dependency_data = os.path.join(os.getcwd(), dependency_data)
+        print(self.dependency_data)
 
     def load_dependency_data(self):
         """add dependency in pwd not existed yet and return all dependency"""

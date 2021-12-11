@@ -1,0 +1,465 @@
+{
+    "compiler_version": "1.0",
+    "dependency": [
+        {
+            "id": 0,
+            "folder": ".",
+            "name": "."
+        },
+        {
+            "id": 1,
+            "folder": ".\\Include",
+            "name": "Include"
+        },
+        {
+            "id": 2,
+            "folder": ".\\PIL",
+            "name": "PIL"
+        },
+        {
+            "id": 3,
+            "folder": ".\\tcl",
+            "name": "tcl"
+        },
+        {
+            "id": 4,
+            "folder": ".\\tcl\\encoding",
+            "name": "encoding"
+        },
+        {
+            "id": 5,
+            "folder": ".\\tcl\\http1.0",
+            "name": "http1.0"
+        },
+        {
+            "id": 6,
+            "folder": ".\\tcl\\msgs",
+            "name": "msgs"
+        },
+        {
+            "id": 7,
+            "folder": ".\\tcl\\opt0.4",
+            "name": "opt0.4"
+        },
+        {
+            "id": 8,
+            "folder": ".\\tcl\\tzdata",
+            "name": "tzdata"
+        },
+        {
+            "id": 9,
+            "folder": ".\\tcl\\tzdata\\Africa",
+            "name": "Africa"
+        },
+        {
+            "id": 10,
+            "folder": ".\\tcl\\tzdata\\America",
+            "name": "America"
+        },
+        {
+            "id": 11,
+            "folder": ".\\tcl\\tzdata\\America\\Argentina",
+            "name": "Argentina"
+        },
+        {
+            "id": 12,
+            "folder": ".\\tcl\\tzdata\\America\\Indiana",
+            "name": "Indiana"
+        },
+        {
+            "id": 13,
+            "folder": ".\\tcl\\tzdata\\America\\Kentucky",
+            "name": "Kentucky"
+        },
+        {
+            "id": 14,
+            "folder": ".\\tcl\\tzdata\\America\\North_Dakota",
+            "name": "North_Dakota"
+        },
+        {
+            "id": 15,
+            "folder": ".\\tcl\\tzdata\\Antarctica",
+            "name": "Antarctica"
+        },
+        {
+            "id": 16,
+            "folder": ".\\tcl\\tzdata\\Arctic",
+            "name": "Arctic"
+        },
+        {
+            "id": 17,
+            "folder": ".\\tcl\\tzdata\\Asia",
+            "name": "Asia"
+        },
+        {
+            "id": 18,
+            "folder": ".\\tcl\\tzdata\\Atlantic",
+            "name": "Atlantic"
+        },
+        {
+            "id": 19,
+            "folder": ".\\tcl\\tzdata\\Australia",
+            "name": "Australia"
+        },
+        {
+            "id": 20,
+            "folder": ".\\tcl\\tzdata\\Brazil",
+            "name": "Brazil"
+        },
+        {
+            "id": 21,
+            "folder": ".\\tcl\\tzdata\\Canada",
+            "name": "Canada"
+        },
+        {
+            "id": 22,
+            "folder": ".\\tcl\\tzdata\\Chile",
+            "name": "Chile"
+        },
+        {
+            "id": 23,
+            "folder": ".\\tcl\\tzdata\\Etc",
+            "name": "Etc"
+        },
+        {
+            "id": 24,
+            "folder": ".\\tcl\\tzdata\\Europe",
+            "name": "Europe"
+        },
+        {
+            "id": 25,
+            "folder": ".\\tcl\\tzdata\\Indian",
+            "name": "Indian"
+        },
+        {
+            "id": 26,
+            "folder": ".\\tcl\\tzdata\\Mexico",
+            "name": "Mexico"
+        },
+        {
+            "id": 27,
+            "folder": ".\\tcl\\tzdata\\Pacific",
+            "name": "Pacific"
+        },
+        {
+            "id": 28,
+            "folder": ".\\tcl\\tzdata\\SystemV",
+            "name": "SystemV"
+        },
+        {
+            "id": 29,
+            "folder": ".\\tcl\\tzdata\\US",
+            "name": "US"
+        },
+        {
+            "id": 30,
+            "folder": ".\\tk",
+            "name": "tk"
+        },
+        {
+            "id": 31,
+            "folder": ".\\tk\\images",
+            "name": "images"
+        },
+        {
+            "id": 32,
+            "folder": ".\\tk\\msgs",
+            "name": "msgs"
+        },
+        {
+            "id": 33,
+            "folder": ".\\tk\\ttk",
+            "name": "ttk"
+        },
+        {
+            "id": 34,
+            "folder": ".\\other_code",
+            "name": "other_code"
+        },
+        {
+            "id": 35,
+            "folder": ".\\song",
+            "name": "song"
+        },
+        {
+            "id": 36,
+            "folder": ".\\encode",
+            "name": "encode"
+        },
+        {
+            "id": 37,
+            "folder": ".\\encode\\__pycache__",
+            "name": "__pycache__"
+        },
+        {
+            "id": 38,
+            "folder": ".\\img",
+            "name": "img"
+        },
+        {
+            "id": 39,
+            "folder": ".\\lang",
+            "name": "lang"
+        },
+        {
+            "id": 40,
+            "folder": ".\\lib2to3",
+            "name": "lib2to3"
+        },
+        {
+            "id": 41,
+            "folder": ".\\lib2to3\\tests",
+            "name": "tests"
+        },
+        {
+            "id": 42,
+            "folder": ".\\lib2to3\\tests\\data",
+            "name": "data"
+        },
+        {
+            "id": 43,
+            "folder": ".\\numpy",
+            "name": "numpy"
+        },
+        {
+            "id": 44,
+            "folder": ".\\numpy\\core",
+            "name": "core"
+        },
+        {
+            "id": 45,
+            "folder": ".\\numpy\\fft",
+            "name": "fft"
+        },
+        {
+            "id": 46,
+            "folder": ".\\numpy\\linalg",
+            "name": "linalg"
+        },
+        {
+            "id": 47,
+            "folder": ".\\numpy\\random",
+            "name": "random"
+        },
+        {
+            "id": 48,
+            "folder": ".\\win32com",
+            "name": "win32com"
+        },
+        {
+            "id": 49,
+            "folder": ".\\win32com\\shell",
+            "name": "shell"
+        },
+        {
+            "id": 50,
+            "folder": ".\\certifi",
+            "name": "certifi"
+        },
+        {
+            "id": 51,
+            "folder": ".\\Utopia_lib",
+            "name": "Utopia_lib"
+        },
+        {
+            "id": 52,
+            "folder": ".\\Utopia_lib\\Include",
+            "name": "Include"
+        },
+        {
+            "id": 53,
+            "folder": ".\\Utopia_lib\\tcl",
+            "name": "tcl"
+        },
+        {
+            "id": 54,
+            "folder": ".\\Utopia_lib\\tcl\\encoding",
+            "name": "encoding"
+        },
+        {
+            "id": 55,
+            "folder": ".\\Utopia_lib\\tcl\\http1.0",
+            "name": "http1.0"
+        },
+        {
+            "id": 56,
+            "folder": ".\\Utopia_lib\\tcl\\msgs",
+            "name": "msgs"
+        },
+        {
+            "id": 57,
+            "folder": ".\\Utopia_lib\\tcl\\opt0.4",
+            "name": "opt0.4"
+        },
+        {
+            "id": 58,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata",
+            "name": "tzdata"
+        },
+        {
+            "id": 59,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Africa",
+            "name": "Africa"
+        },
+        {
+            "id": 60,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America",
+            "name": "America"
+        },
+        {
+            "id": 61,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\Argentina",
+            "name": "Argentina"
+        },
+        {
+            "id": 62,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\Indiana",
+            "name": "Indiana"
+        },
+        {
+            "id": 63,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\Kentucky",
+            "name": "Kentucky"
+        },
+        {
+            "id": 64,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\North_Dakota",
+            "name": "North_Dakota"
+        },
+        {
+            "id": 65,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Antarctica",
+            "name": "Antarctica"
+        },
+        {
+            "id": 66,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Arctic",
+            "name": "Arctic"
+        },
+        {
+            "id": 67,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Asia",
+            "name": "Asia"
+        },
+        {
+            "id": 68,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Atlantic",
+            "name": "Atlantic"
+        },
+        {
+            "id": 69,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Australia",
+            "name": "Australia"
+        },
+        {
+            "id": 70,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Brazil",
+            "name": "Brazil"
+        },
+        {
+            "id": 71,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Canada",
+            "name": "Canada"
+        },
+        {
+            "id": 72,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Chile",
+            "name": "Chile"
+        },
+        {
+            "id": 73,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Etc",
+            "name": "Etc"
+        },
+        {
+            "id": 74,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Europe",
+            "name": "Europe"
+        },
+        {
+            "id": 75,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Indian",
+            "name": "Indian"
+        },
+        {
+            "id": 76,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Mexico",
+            "name": "Mexico"
+        },
+        {
+            "id": 77,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Pacific",
+            "name": "Pacific"
+        },
+        {
+            "id": 78,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\SystemV",
+            "name": "SystemV"
+        },
+        {
+            "id": 79,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\US",
+            "name": "US"
+        },
+        {
+            "id": 80,
+            "folder": ".\\Utopia_lib\\tcl8",
+            "name": "tcl8"
+        },
+        {
+            "id": 81,
+            "folder": ".\\Utopia_lib\\tcl8\\8.4",
+            "name": "8.4"
+        },
+        {
+            "id": 82,
+            "folder": ".\\Utopia_lib\\tcl8\\8.4\\platform",
+            "name": "platform"
+        },
+        {
+            "id": 83,
+            "folder": ".\\Utopia_lib\\tcl8\\8.5",
+            "name": "8.5"
+        },
+        {
+            "id": 84,
+            "folder": ".\\Utopia_lib\\tcl8\\8.6",
+            "name": "8.6"
+        },
+        {
+            "id": 85,
+            "folder": ".\\Utopia_lib\\tk",
+            "name": "tk"
+        },
+        {
+            "id": 86,
+            "folder": ".\\Utopia_lib\\tk\\images",
+            "name": "images"
+        },
+        {
+            "id": 87,
+            "folder": ".\\Utopia_lib\\tk\\msgs",
+            "name": "msgs"
+        },
+        {
+            "id": 88,
+            "folder": ".\\Utopia_lib\\tk\\ttk",
+            "name": "ttk"
+        },
+        {
+            "id": 89,
+            "folder": ".\\lib",
+            "name": "lib"
+        },
+        {
+            "id": 90,
+            "folder": ".\\Ressources",
+            "name": "Ressources"
+        },
+        {
+            "id": 91,
+            "folder": ".\\Ressources\\lang",
+            "name": "lang"
+        }
+    ]
+}

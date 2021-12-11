@@ -18,7 +18,7 @@ class Fdf:
         """Constructor"""
         if not os.path.isdir(fdf_folder):
             raise FileNotFoundError("binaries_folder not exist: " + fdf_folder)
-        if os.path.abspath(fdf_folder):
+        if os.path.isabs(fdf_folder):
             self.fdf_folder = fdf_folder
         else:
             self.fdf_folder = os.path.join(os.getcwd(), fdf_folder)

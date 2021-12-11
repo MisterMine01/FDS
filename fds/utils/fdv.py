@@ -19,7 +19,7 @@ class Fdv:
         self.fds_web_server = fds_web_server
         if not os.path.isdir(version_folder):
             raise FileNotFoundError("version_folder not exist: " + version_folder)
-        if os.path.abspath(version_folder):
+        if os.path.isabs(version_folder):
             self.version_folder = version_folder
         else:
             self.version_folder = os.path.join(os.getcwd(), version_folder)

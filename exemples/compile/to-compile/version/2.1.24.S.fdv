@@ -1,0 +1,252 @@
+{
+    "name": "2.1.24.S",
+    "executable": "Utopia.exe",
+    "dependency": [
+        {
+            "id": 0,
+            "folder": ".",
+            "name": ".",
+            "version": "17"
+        },
+        {
+            "id": 2,
+            "folder": ".\\PIL",
+            "name": "PIL",
+            "version": "4"
+        },
+        {
+            "id": 50,
+            "folder": ".\\certifi",
+            "name": "certifi",
+            "version": "0"
+        },
+        {
+            "id": 51,
+            "folder": ".\\Utopia_lib",
+            "name": "Utopia_lib",
+            "version": "0"
+        },
+        {
+            "id": 52,
+            "folder": ".\\Utopia_lib\\Include",
+            "name": "Include",
+            "version": "0"
+        },
+        {
+            "id": 53,
+            "folder": ".\\Utopia_lib\\tcl",
+            "name": "tcl",
+            "version": "0"
+        },
+        {
+            "id": 54,
+            "folder": ".\\Utopia_lib\\tcl\\encoding",
+            "name": "encoding",
+            "version": "0"
+        },
+        {
+            "id": 55,
+            "folder": ".\\Utopia_lib\\tcl\\http1.0",
+            "name": "http1.0",
+            "version": "0"
+        },
+        {
+            "id": 56,
+            "folder": ".\\Utopia_lib\\tcl\\msgs",
+            "name": "msgs",
+            "version": "0"
+        },
+        {
+            "id": 57,
+            "folder": ".\\Utopia_lib\\tcl\\opt0.4",
+            "name": "opt0.4",
+            "version": "0"
+        },
+        {
+            "id": 58,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata",
+            "name": "tzdata",
+            "version": "0"
+        },
+        {
+            "id": 59,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Africa",
+            "name": "Africa",
+            "version": "0"
+        },
+        {
+            "id": 60,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America",
+            "name": "America",
+            "version": "0"
+        },
+        {
+            "id": 61,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\Argentina",
+            "name": "Argentina",
+            "version": "0"
+        },
+        {
+            "id": 62,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\Indiana",
+            "name": "Indiana",
+            "version": "0"
+        },
+        {
+            "id": 63,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\Kentucky",
+            "name": "Kentucky",
+            "version": "0"
+        },
+        {
+            "id": 64,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\America\\North_Dakota",
+            "name": "North_Dakota",
+            "version": "0"
+        },
+        {
+            "id": 65,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Antarctica",
+            "name": "Antarctica",
+            "version": "0"
+        },
+        {
+            "id": 66,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Arctic",
+            "name": "Arctic",
+            "version": "0"
+        },
+        {
+            "id": 67,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Asia",
+            "name": "Asia",
+            "version": "0"
+        },
+        {
+            "id": 68,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Atlantic",
+            "name": "Atlantic",
+            "version": "0"
+        },
+        {
+            "id": 69,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Australia",
+            "name": "Australia",
+            "version": "0"
+        },
+        {
+            "id": 70,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Brazil",
+            "name": "Brazil",
+            "version": "0"
+        },
+        {
+            "id": 71,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Canada",
+            "name": "Canada",
+            "version": "0"
+        },
+        {
+            "id": 72,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Chile",
+            "name": "Chile",
+            "version": "0"
+        },
+        {
+            "id": 73,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Etc",
+            "name": "Etc",
+            "version": "0"
+        },
+        {
+            "id": 74,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Europe",
+            "name": "Europe",
+            "version": "0"
+        },
+        {
+            "id": 75,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Indian",
+            "name": "Indian",
+            "version": "0"
+        },
+        {
+            "id": 76,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Mexico",
+            "name": "Mexico",
+            "version": "0"
+        },
+        {
+            "id": 77,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\Pacific",
+            "name": "Pacific",
+            "version": "0"
+        },
+        {
+            "id": 78,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\SystemV",
+            "name": "SystemV",
+            "version": "0"
+        },
+        {
+            "id": 79,
+            "folder": ".\\Utopia_lib\\tcl\\tzdata\\US",
+            "name": "US",
+            "version": "0"
+        },
+        {
+            "id": 80,
+            "folder": ".\\Utopia_lib\\tcl8",
+            "name": "tcl8",
+            "version": "0"
+        },
+        {
+            "id": 81,
+            "folder": ".\\Utopia_lib\\tcl8\\8.4",
+            "name": "8.4",
+            "version": "0"
+        },
+        {
+            "id": 82,
+            "folder": ".\\Utopia_lib\\tcl8\\8.4\\platform",
+            "name": "platform",
+            "version": "0"
+        },
+        {
+            "id": 83,
+            "folder": ".\\Utopia_lib\\tcl8\\8.5",
+            "name": "8.5",
+            "version": "0"
+        },
+        {
+            "id": 84,
+            "folder": ".\\Utopia_lib\\tcl8\\8.6",
+            "name": "8.6",
+            "version": "0"
+        },
+        {
+            "id": 85,
+            "folder": ".\\Utopia_lib\\tk",
+            "name": "tk",
+            "version": "0"
+        },
+        {
+            "id": 86,
+            "folder": ".\\Utopia_lib\\tk\\images",
+            "name": "images",
+            "version": "0"
+        },
+        {
+            "id": 87,
+            "folder": ".\\Utopia_lib\\tk\\msgs",
+            "name": "msgs",
+            "version": "0"
+        },
+        {
+            "id": 88,
+            "folder": ".\\Utopia_lib\\tk\\ttk",
+            "name": "ttk",
+            "version": "0"
+        }
+    ]
+}

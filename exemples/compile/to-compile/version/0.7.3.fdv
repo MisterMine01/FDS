@@ -1,0 +1,234 @@
+{
+    "name": "0.7.3",
+    "executable": "Card_Game.exe",
+    "dependency": [
+        {
+            "id": 0,
+            "folder": ".",
+            "name": ".",
+            "version": "10"
+        },
+        {
+            "id": 1,
+            "folder": ".\\Include",
+            "name": "Include",
+            "version": "0"
+        },
+        {
+            "id": 2,
+            "folder": ".\\PIL",
+            "name": "PIL",
+            "version": "0"
+        },
+        {
+            "id": 3,
+            "folder": ".\\tcl",
+            "name": "tcl",
+            "version": "0"
+        },
+        {
+            "id": 4,
+            "folder": ".\\tcl\\encoding",
+            "name": "encoding",
+            "version": "0"
+        },
+        {
+            "id": 5,
+            "folder": ".\\tcl\\http1.0",
+            "name": "http1.0",
+            "version": "0"
+        },
+        {
+            "id": 6,
+            "folder": ".\\tcl\\msgs",
+            "name": "msgs",
+            "version": "0"
+        },
+        {
+            "id": 7,
+            "folder": ".\\tcl\\opt0.4",
+            "name": "opt0.4",
+            "version": "0"
+        },
+        {
+            "id": 8,
+            "folder": ".\\tcl\\tzdata",
+            "name": "tzdata",
+            "version": "0"
+        },
+        {
+            "id": 9,
+            "folder": ".\\tcl\\tzdata\\Africa",
+            "name": "Africa",
+            "version": "0"
+        },
+        {
+            "id": 10,
+            "folder": ".\\tcl\\tzdata\\America",
+            "name": "America",
+            "version": "0"
+        },
+        {
+            "id": 11,
+            "folder": ".\\tcl\\tzdata\\America\\Argentina",
+            "name": "Argentina",
+            "version": "0"
+        },
+        {
+            "id": 12,
+            "folder": ".\\tcl\\tzdata\\America\\Indiana",
+            "name": "Indiana",
+            "version": "0"
+        },
+        {
+            "id": 13,
+            "folder": ".\\tcl\\tzdata\\America\\Kentucky",
+            "name": "Kentucky",
+            "version": "0"
+        },
+        {
+            "id": 14,
+            "folder": ".\\tcl\\tzdata\\America\\North_Dakota",
+            "name": "North_Dakota",
+            "version": "0"
+        },
+        {
+            "id": 15,
+            "folder": ".\\tcl\\tzdata\\Antarctica",
+            "name": "Antarctica",
+            "version": "0"
+        },
+        {
+            "id": 16,
+            "folder": ".\\tcl\\tzdata\\Arctic",
+            "name": "Arctic",
+            "version": "0"
+        },
+        {
+            "id": 17,
+            "folder": ".\\tcl\\tzdata\\Asia",
+            "name": "Asia",
+            "version": "0"
+        },
+        {
+            "id": 18,
+            "folder": ".\\tcl\\tzdata\\Atlantic",
+            "name": "Atlantic",
+            "version": "0"
+        },
+        {
+            "id": 19,
+            "folder": ".\\tcl\\tzdata\\Australia",
+            "name": "Australia",
+            "version": "0"
+        },
+        {
+            "id": 20,
+            "folder": ".\\tcl\\tzdata\\Brazil",
+            "name": "Brazil",
+            "version": "0"
+        },
+        {
+            "id": 21,
+            "folder": ".\\tcl\\tzdata\\Canada",
+            "name": "Canada",
+            "version": "0"
+        },
+        {
+            "id": 22,
+            "folder": ".\\tcl\\tzdata\\Chile",
+            "name": "Chile",
+            "version": "0"
+        },
+        {
+            "id": 23,
+            "folder": ".\\tcl\\tzdata\\Etc",
+            "name": "Etc",
+            "version": "0"
+        },
+        {
+            "id": 24,
+            "folder": ".\\tcl\\tzdata\\Europe",
+            "name": "Europe",
+            "version": "0"
+        },
+        {
+            "id": 25,
+            "folder": ".\\tcl\\tzdata\\Indian",
+            "name": "Indian",
+            "version": "0"
+        },
+        {
+            "id": 26,
+            "folder": ".\\tcl\\tzdata\\Mexico",
+            "name": "Mexico",
+            "version": "0"
+        },
+        {
+            "id": 27,
+            "folder": ".\\tcl\\tzdata\\Pacific",
+            "name": "Pacific",
+            "version": "0"
+        },
+        {
+            "id": 28,
+            "folder": ".\\tcl\\tzdata\\SystemV",
+            "name": "SystemV",
+            "version": "0"
+        },
+        {
+            "id": 29,
+            "folder": ".\\tcl\\tzdata\\US",
+            "name": "US",
+            "version": "0"
+        },
+        {
+            "id": 30,
+            "folder": ".\\tk",
+            "name": "tk",
+            "version": "0"
+        },
+        {
+            "id": 31,
+            "folder": ".\\tk\\images",
+            "name": "images",
+            "version": "0"
+        },
+        {
+            "id": 32,
+            "folder": ".\\tk\\msgs",
+            "name": "msgs",
+            "version": "0"
+        },
+        {
+            "id": 33,
+            "folder": ".\\tk\\ttk",
+            "name": "ttk",
+            "version": "0"
+        },
+        {
+            "id": 34,
+            "folder": ".\\other_code",
+            "name": "other_code",
+            "version": "3"
+        },
+        {
+            "id": 35,
+            "folder": ".\\song",
+            "name": "song",
+            "version": "0"
+        },
+        {
+            "id": 36,
+            "folder": ".\\encode",
+            "name": "encode",
+            "version": "5"
+        },
+        {
+            "id": 39,
+            "folder": ".\\lang",
+            "name": "lang",
+            "version": "0"
+        }
+    ]
+}
