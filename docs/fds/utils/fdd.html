@@ -91,10 +91,11 @@
             <span class="nb">open</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;compiler_version&quot;</span><span class="p">:</span> <span class="n">FDD_version</span><span class="p">,</span>
                                                          <span class="s2">&quot;dependency&quot;</span><span class="p">:</span> <span class="p">[]},</span>
                                                         <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">dependency_data</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">dependency_data</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">load_dependency_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;add dependency in pwd not existed yet and return all dependency&quot;&quot;&quot;</span>
@@ -165,10 +166,11 @@
             <span class="nb">open</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;compiler_version&quot;</span><span class="p">:</span> <span class="n">FDD_version</span><span class="p">,</span>
                                                          <span class="s2">&quot;dependency&quot;</span><span class="p">:</span> <span class="p">[]},</span>
                                                         <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">dependency_data</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">dependency_data</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">load_dependency_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;add dependency in pwd not existed yet and return all dependency&quot;&quot;&quot;</span>
@@ -235,10 +237,11 @@
             <span class="nb">open</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;compiler_version&quot;</span><span class="p">:</span> <span class="n">FDD_version</span><span class="p">,</span>
                                                          <span class="s2">&quot;dependency&quot;</span><span class="p">:</span> <span class="p">[]},</span>
                                                         <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">dependency_data</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">dependency_data</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">dependency_data</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependency_data</span><span class="p">)</span>
 </pre></div>
 
         </details>
