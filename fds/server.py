@@ -1,4 +1,4 @@
-from .pcjs_api import PCJsApi
+from pcjs_api import PCJsApi
 
 """Server Connection to the FDS
 Use PCJsApi
