@@ -1,8 +1,0 @@
-LICENSE
-README.md
-setup.py
-fds.egg-info/PKG-INFO
-fds.egg-info/SOURCES.txt
-fds.egg-info/dependency_links.txt
-fds.egg-info/requires.txt
-fds.egg-info/top_level.txt

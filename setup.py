@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="fds",
+    name="fd-system",
     version="1.0",
     description="Folder Downloader System for version system",
     url="https://github.com/MisterMine01/FDS",
@@ -9,7 +9,7 @@ setup(
     install_requires=[
         "pcjs-api"
     ],
-    package_dir={"fds": "fds"},
+    packages=["fd-system", "fd-system.utils"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

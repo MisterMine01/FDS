@@ -1,1 +1,1 @@
-pdoc -o ./docs ./fds
+pdoc -o ./docs ./fd-system
