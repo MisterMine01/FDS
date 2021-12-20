@@ -4,7 +4,7 @@ echo 2-pypi
 set /p data="-}"
 python setup.py bdist_wheel --universal
 if %data%==1 (
-	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+	twine upload --verbose --repository-url https://test.pypi.org/legacy/ dist/*
 ) else (
 	twine upload dist/*
 )
