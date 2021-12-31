@@ -5,6 +5,8 @@ FDS or *Folder Downloader System* is a version system for you're game, or projec
 **IT'S NOT LIKE GIT, IT'S ONLY FOR VERSION SAVE, RELEASE, OR THINGS LIKE THAT**
 
 * [Documentation](https://mistermine01.github.io/FDS/)
+* [Pypi page](https://pypi.org/project/fd-system/)
+* [Github page](https://github.com/MisterMine01/FDS)
 
 ## How use it
 
